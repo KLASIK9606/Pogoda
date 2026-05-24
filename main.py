@@ -28,7 +28,7 @@ for city in CITIES:
         if response.status_code == 200:
             weather_dict = {
                 "miasto": data["name"],
-                "temperatura_celsius": data["main"]["temp"],
+                "temperatura_celsius": round(data["main"]["temp"], 0),
                 "wilgotnosc_procent": data["main"]["humidity"],
                 "opis": data["weather"][0]["description"],
                 "data_pobrania": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -46,9 +46,16 @@ for city in CITIES:
 
 if all_weather_data:
     df = pd.DataFrame(all_weather_data)
+    
+    # OSTATECZNY MŁOT: Wymuszamy na Pandasie czyste liczby całkowite
+    df['temperatura_celsius'] = df['temperatura_celsius'].astype(int)
+    
+    # Zapis do bazy
     conn = sqlite3.connect('weather_data.db')
     df.to_sql('historia_pogody', conn, if_exists='append', index=False)
     conn.close()
-    print("\nSUKCES: Wszystkie miasta zapisane do bazy danych!")
-else:
-    print("\nBŁĄD: Nie pobrano żadnych danych, baza nietknięta.")
+    
+    # Zapis do CSV
+    df.to_csv('dane_pogodowe.csv', index=False, encoding='utf-8')
+    
+    print("\nSUKCES: Wszystkie miasta zapisane do bazy i pliku CSV!")

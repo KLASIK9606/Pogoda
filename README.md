@@ -10,7 +10,7 @@ Ten projekt to w pełni działający system typu End-to-End (ETL). Służy do au
 * **BI & Wizualizacja:** Power BI
 
 ##  Jak to działa 
-## ⚙️ Działanie systemu (Proces ETL)
+##  Działanie systemu (Proces ETL)
 
 1. **Ekstrakcja danych (Extract):** Skrypt wykonuje zapytania HTTP GET do zewnętrznego interfejsu REST API (OpenWeatherMap) i pobiera bieżące dane meteorologiczne w formacie JSON dla pięciu zdefiniowanych miast.
 2. **Transformacja (Transform):** Do przetwarzania danych wykorzystywana jest biblioteka `pandas`. Proces obejmuje mapowanie zmiennych oraz rzutowanie typów danych – w szczególności konwersję wartości temperatury z typu zmiennoprzecinkowego (float) na typ całkowity (integer). Standaryzacja ta eliminuje błędy parsowania w aplikacjach BI, wynikające z niezgodności separatorów dziesiętnych w ustawieniach regionalnych systemu operacyjnego.

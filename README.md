@@ -1,4 +1,4 @@
-#  Weather Data Pipeline: Od API do Dashboardu
+#  Weather Data Pipeline
 
 ##  O projekcie
 Ten projekt to w pełni działający system typu End-to-End (ETL). Służy do automatycznego pobierania surowych danych pogodowych z REST API, ich czyszczenia, trwałego zapisu oraz wizualizacji w środowisku Business Intelligence.
